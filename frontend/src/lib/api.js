@@ -1,7 +1,8 @@
 import axios from 'axios'
 
+const isProd = import.meta.env.PROD;
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000',
+  baseURL: isProd ? '/_/backend' : (import.meta.env.VITE_API_URL || 'http://localhost:3000'),
 })
 
 // Agrega el token JWT a cada request automáticamente
