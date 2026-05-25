@@ -26,6 +26,13 @@ export default function Doctores() {
     if (editando) {
       await api.put(`/api/usuarios/${editando.id}`, datos)
       setNotificacion({ mensaje: 'Usuario actualizado correctamente', tipo: 'exito' })
+      
+      // Actualizar localStorage si se editó a sí mismo
+      const logueado = JSON.parse(localStorage.getItem('usuario'))
+      if (logueado && logueado.id === editando.id) {
+        localStorage.setItem('usuario', JSON.stringify({ ...logueado, foto: datos.foto, nombre: datos.nombre }))
+        window.location.reload()
+      }
     } else {
       await api.post('/api/usuarios', datos)
       setNotificacion({ mensaje: 'Usuario creado correctamente', tipo: 'exito' })
