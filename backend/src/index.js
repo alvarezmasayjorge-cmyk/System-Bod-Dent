@@ -77,3 +77,6 @@ app.listen(PORT, async () => {
   await seedSiEsNecesario()
   iniciarRecordatorios()
 })
+
+// Exportar para compatibilidad con Vercel
+module.exports = app
