@@ -9,7 +9,7 @@ import Login from './pages/Login'
 // │  CONTROL DE BLOQUEO DEL SISTEMA                         │
 // │  Cambiar a false cuando la doctora pague sus facturas   │
 // └──────────────────────────────────────────────────────────┘
-const SISTEMA_BLOQUEADO = true
+const SISTEMA_BLOQUEADO = false
 
 // Decodifica el payload del JWT sin librería externa
 const decodeToken = (token) => {
