@@ -4,11 +4,9 @@ const connectionString = process.env.DATABASE_URL
 let prisma;
 
 if (connectionString && connectionString.startsWith('postgres')) {
-  const { Pool } = require('pg')
   const { PrismaPg } = require('@prisma/adapter-pg')
-  
-  const pool = new Pool({ connectionString })
-  const adapter = new PrismaPg({ pool })
+
+  const adapter = new PrismaPg({ connectionString })
   prisma = new PrismaClient({ adapter })
 } else {
   // Ocultamos el require de NCC (Vercel) para evitar fallos de dependencias nativas
