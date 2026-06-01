@@ -11,8 +11,9 @@ if (connectionString && connectionString.startsWith('postgres')) {
   const adapter = new PrismaPg({ pool })
   prisma = new PrismaClient({ adapter })
 } else {
-  // Para SQLite o desarrollo local, usar el adaptador de SQLite
-  const { PrismaBetterSqlite3 } = require('@prisma/adapter-better-sqlite3')
+  // Ocultamos el require de NCC (Vercel) para evitar fallos de dependencias nativas
+  const evalRequire = eval('require')
+  const { PrismaBetterSqlite3 } = evalRequire('@prisma/adapter-better-sqlite3')
   
   const adapter = new PrismaBetterSqlite3({ url: connectionString || 'file:./dev.db' })
   prisma = new PrismaClient({ adapter })
