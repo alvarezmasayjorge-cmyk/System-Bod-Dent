@@ -1,10 +1,6 @@
 require('dotenv').config()
 const bcrypt = require('bcryptjs')
-const { PrismaClient } = require('@prisma/client')
-const { PrismaPg } = require('@prisma/adapter-pg')
-
-const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL })
-const prisma = new PrismaClient({ adapter })
+const prisma = require('./prisma')
 
 async function main() {
   console.log('🌱 Iniciando seed...')
@@ -13,7 +9,7 @@ async function main() {
   const adminPass = await bcrypt.hash('dental2026', 10)
   const admin = await prisma.usuario.upsert({
     where: { email: 'dra.mariela@gmail.com' },
-    update: {},
+    update: { password: adminPass },
     create: {
       nombre: 'Dra. Mariela Yepez',
       email: 'dra.mariela@gmail.com',
