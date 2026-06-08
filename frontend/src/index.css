@@ -384,9 +384,9 @@ body {
   .fc .fc-timegrid-event .fc-event-main {
     padding: 2px 6px;
   }
-  /* Citas pegadas entre sí, tamaño normal */
+  /* Citas con pequeño espacio entre ellas */
   .fc .fc-timegrid-event {
-    margin: 0 !important;
+    margin: 2px 1px !important;
     border-radius: 4px !important;
     box-shadow: none;
   }
