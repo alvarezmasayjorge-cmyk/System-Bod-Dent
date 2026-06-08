@@ -411,6 +411,28 @@ body {
   }
 }
 
+/* TimeGrid: diseño "gordo" para mobile y tablet (≤1024px) */
+@media (max-width: 1023px) {
+  .fc .fc-timegrid-slot {
+    height: 65px;
+  }
+  .fc .fc-timegrid-event {
+    margin: 3px 2px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .fc .fc-timegrid-event .fc-event-main {
+    padding: 6px 10px;
+  }
+  /* Texto del evento más grande en mobile/tablet */
+  .fc .fc-timegrid-event strong {
+    font-size: 13px !important;
+  }
+  .fc .fc-timegrid-event .fc-event-main span {
+    font-size: 11px !important;
+  }
+}
+
 @media (max-width: 768px) {
   /* Card más compacto */
   .calendar-wrap { padding: 0.5rem !important; }
