@@ -84,7 +84,7 @@ export default function FormCita({ cita, pacientes, doctores = [], esAdmin = fal
 
   return (
     <div
-      className="card rounded-2xl p-4 md:p-6 mb-6"
+      className="card rounded-2xl p-4 md:p-6"
       style={{ animation: 'fadeInUp 0.35s cubic-bezier(0.16,1,0.3,1)', borderTop: '3px solid #0077B6' }}
     >
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
