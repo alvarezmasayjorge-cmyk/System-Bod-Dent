@@ -331,8 +331,8 @@ export default function Citas() {
           }}
           dayMaxEvents={isMobile ? 2 : 4}
           longPressDelay={300}
-          slotEventOverlap={false}
-          slotMinWidth={160}
+          slotEventOverlap={!isMobile}
+          slotMinWidth={320}
         />
       </div>
 
