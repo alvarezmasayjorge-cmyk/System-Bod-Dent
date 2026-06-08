@@ -376,19 +376,23 @@ body {
 /* Wrap del card con padding adaptado */
 .calendar-wrap { padding: 1.25rem; }
 
-/* TimeGrid: slots más altos en desktop */
+/* TimeGrid: ajustes en desktop */
 @media (min-width: 769px) {
   .fc .fc-timegrid-slot {
-    height: 70px;
+    height: 48px;
   }
   .fc .fc-timegrid-event .fc-event-main {
-    padding: 8px 10px;
+    padding: 4px 10px;
   }
-  /* Más espacio alrededor de cada cita */
+  /* Espacio HORIZONTAL entre citas simultáneas (no vertical) */
   .fc .fc-timegrid-event {
-    margin: 2px 3px !important;
+    margin: 0 6px !important;
     border-radius: 8px !important;
     box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  /* Reducir el harness/inset de las columnas de eventos para dar más espacio */
+  .fc .fc-timegrid-event-harness {
+    margin-right: 4px;
   }
 }
 
