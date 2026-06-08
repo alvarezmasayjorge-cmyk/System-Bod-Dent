@@ -96,9 +96,7 @@ export default function Citas() {
 
   const eventosCalendario = citas.map(c => ({
     id: c.id,
-    title: esAdmin && c.doctor
-      ? `${c.paciente.nombre} · ${c.motivo} (${c.doctor.nombre})`
-      : `${c.paciente.nombre} · ${c.motivo}`,
+    title: c.paciente?.nombre || 'Sin nombre',
     start: c.fecha,
     backgroundColor: ESTADO_COLORS[c.estado] ?? ESTADO_COLORS.agendo,
     borderColor: 'transparent',
@@ -197,20 +195,17 @@ export default function Citas() {
   const renderEventoGrid = (info) => {
     const { event } = info
     return (
-      <div className="flex flex-col gap-1 p-1.5 leading-snug w-full h-full justify-center">
-        <strong className="line-clamp-2 text-[12px]">{event.title}</strong>
-        <span className="truncate opacity-90 text-[11px] capitalize">
-          {ESTADO_LABELS[event.extendedProps.estado] ?? event.extendedProps.estado} | {event.extendedProps.duracion} min
+      <div className="flex flex-col gap-0.5 p-1.5 leading-snug w-full h-full justify-center overflow-hidden">
+        <strong className="line-clamp-2 text-[13px]">{event.title}</strong>
+        <span className="text-[10px] opacity-80">
+          {event.extendedProps.duracion} min
         </span>
-        {event.extendedProps.telefono && (
-          <span className="truncate opacity-90 text-[11px]">{event.extendedProps.telefono}</span>
-        )}
       </div>
     )
   }
 
   return (
-    <div className="p-3 md:p-8 max-w-6xl mx-auto">
+    <div className="p-3 md:p-6 max-w-[1600px] mx-auto">
 
       {notificacion && (
         <Notificacion
@@ -332,7 +327,7 @@ export default function Citas() {
           dayMaxEvents={isMobile ? 2 : 4}
           longPressDelay={300}
           slotEventOverlap={!isMobile}
-          slotMinWidth={320}
+          slotMinWidth={200}
         />
       </div>
 
