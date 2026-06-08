@@ -250,16 +250,29 @@ export default function Citas() {
 
       {/* Form */}
       {mostrarForm && (
-        <FormCita
-          cita={citaEditar}
-          pacientes={pacientes}
-          doctores={doctores}
-          esAdmin={esAdmin}
-          fechaInicial={fechaSeleccionada}
-          onGuardar={handleGuardar}
-          onEliminar={handleEliminar}
-          onCancelar={() => { setMostrarForm(false); setCitaEditar(null) }}
-        />
+        <div
+          className="fixed inset-0 z-50 flex items-start md:items-center justify-center p-4 overflow-y-auto"
+          style={{ backgroundColor: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(4px)' }}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setMostrarForm(false)
+              setCitaEditar(null)
+            }
+          }}
+        >
+          <div className="w-full max-w-2xl my-4 md:my-8">
+            <FormCita
+              cita={citaEditar}
+              pacientes={pacientes}
+              doctores={doctores}
+              esAdmin={esAdmin}
+              fechaInicial={fechaSeleccionada}
+              onGuardar={handleGuardar}
+              onEliminar={handleEliminar}
+              onCancelar={() => { setMostrarForm(false); setCitaEditar(null) }}
+            />
+          </div>
+        </div>
       )}
 
       {/* Switcher de vista (solo móvil) */}
