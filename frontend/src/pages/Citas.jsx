@@ -195,9 +195,9 @@ export default function Citas() {
   const renderEventoGrid = (info) => {
     const { event } = info
     return (
-      <div className="flex flex-col gap-0.5 p-1.5 leading-snug w-full h-full justify-center overflow-hidden">
-        <strong className="line-clamp-2 text-[13px]">{event.title}</strong>
-        <span className="text-[10px] opacity-80">
+      <div className="flex flex-col gap-0 p-0.5 leading-tight w-full h-full justify-center overflow-hidden">
+        <strong className="line-clamp-2 text-[11px]">{event.title}</strong>
+        <span className="text-[9px] opacity-80">
           {event.extendedProps.duracion} min
         </span>
       </div>
