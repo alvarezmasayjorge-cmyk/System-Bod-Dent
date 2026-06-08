@@ -341,6 +341,7 @@ export default function Citas() {
           longPressDelay={300}
           slotEventOverlap={!isMobile}
           slotMinWidth={200}
+          eventMaxStack={isMobile ? undefined : 1}
         />
       </div>
 
