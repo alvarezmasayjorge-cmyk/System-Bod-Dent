@@ -57,7 +57,7 @@ const useIsMobile = (breakpoint = 768) => {
 export default function Citas() {
   const usuario = decodeToken(localStorage.getItem('token'))
   const esAdmin = usuario?.rol === 'admin'
-  const isMobile = useIsMobile()
+  const isMobile = useIsMobile(1024)
   const calendarRef = useRef(null)
 
   const [citas, setCitas] = useState([])
@@ -87,7 +87,7 @@ export default function Citas() {
   useEffect(() => {
     const api = calendarRef.current?.getApi()
     if (!api) return
-    const nuevaVista = isMobile ? 'listWeek' : 'timeGridWeek'
+    const nuevaVista = isMobile ? 'listWeek' : 'timeGridDay'
     if (api.view.type !== nuevaVista) {
       api.changeView(nuevaVista)
       setVistaActiva(nuevaVista)
@@ -198,7 +198,7 @@ export default function Citas() {
     const { event } = info
     return (
       <div className="flex flex-col gap-1 p-1.5 leading-snug w-full h-full justify-center">
-        <strong className="truncate text-[12px]">{event.title}</strong>
+        <strong className="line-clamp-2 text-[12px]">{event.title}</strong>
         <span className="truncate opacity-90 text-[11px] capitalize">
           {ESTADO_LABELS[event.extendedProps.estado] ?? event.extendedProps.estado} | {event.extendedProps.duracion} min
         </span>
@@ -295,13 +295,13 @@ export default function Citas() {
 
       {/* Calendar */}
       <div
-        className="card rounded-2xl overflow-hidden calendar-wrap"
+        className="card rounded-2xl overflow-x-auto calendar-wrap"
         style={{ animation: 'fadeInUp 0.45s cubic-bezier(0.16,1,0.3,1) 80ms both' }}
       >
         <FullCalendar
           ref={calendarRef}
           plugins={[dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin]}
-          initialView={isMobile ? 'listWeek' : 'timeGridWeek'}
+          initialView={isMobile ? 'listWeek' : 'timeGridDay'}
           headerToolbar={
             isMobile
               ? { left: 'prev,next', center: 'title', right: 'today' }
@@ -332,7 +332,7 @@ export default function Citas() {
           dayMaxEvents={isMobile ? 2 : 4}
           longPressDelay={300}
           slotEventOverlap={false}
-          eventMaxStack={3}
+          slotMinWidth={160}
         />
       </div>
 
