@@ -379,10 +379,16 @@ body {
 /* TimeGrid: slots más altos en desktop */
 @media (min-width: 769px) {
   .fc .fc-timegrid-slot {
-    height: 44px;
+    height: 70px;
   }
   .fc .fc-timegrid-event .fc-event-main {
-    padding: 4px 7px;
+    padding: 8px 10px;
+  }
+  /* Más espacio alrededor de cada cita */
+  .fc .fc-timegrid-event {
+    margin: 2px 3px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
   }
 }
 
