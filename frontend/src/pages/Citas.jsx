@@ -197,13 +197,13 @@ export default function Citas() {
   const renderEventoGrid = (info) => {
     const { event } = info
     return (
-      <div className="flex flex-col gap-0.5 p-1 text-xs leading-tight w-full">
-        <strong className="truncate text-[11px]">{event.title}</strong>
-        <span className="truncate opacity-90 text-[10px] capitalize">
+      <div className="flex flex-col gap-1 p-1.5 leading-snug w-full h-full justify-center">
+        <strong className="truncate text-[12px]">{event.title}</strong>
+        <span className="truncate opacity-90 text-[11px] capitalize">
           {ESTADO_LABELS[event.extendedProps.estado] ?? event.extendedProps.estado} | {event.extendedProps.duracion} min
         </span>
         {event.extendedProps.telefono && (
-          <span className="truncate opacity-90 text-[10px]">{event.extendedProps.telefono}</span>
+          <span className="truncate opacity-90 text-[11px]">{event.extendedProps.telefono}</span>
         )}
       </div>
     )
@@ -331,6 +331,8 @@ export default function Citas() {
           }}
           dayMaxEvents={isMobile ? 2 : 4}
           longPressDelay={300}
+          slotEventOverlap={false}
+          eventMaxStack={3}
         />
       </div>
 

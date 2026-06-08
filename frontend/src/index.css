@@ -376,6 +376,16 @@ body {
 /* Wrap del card con padding adaptado */
 .calendar-wrap { padding: 1.25rem; }
 
+/* TimeGrid: slots más altos en desktop */
+@media (min-width: 769px) {
+  .fc .fc-timegrid-slot {
+    height: 44px;
+  }
+  .fc .fc-timegrid-event .fc-event-main {
+    padding: 4px 7px;
+  }
+}
+
 @media (max-width: 768px) {
   /* Card más compacto */
   .calendar-wrap { padding: 0.5rem !important; }
