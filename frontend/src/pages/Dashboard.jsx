@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import api from '../lib/api'
-import ComprobantePago, { BannerPago, RECORDATORIO_PAGO_ACTIVO, debeAutoMostrar } from '../components/ComprobantePago'
+import ComprobantePago, { BannerPago, RECORDATORIO_PAGO_ACTIVO } from '../components/ComprobantePago'
 
 const API_CITAS     = '/api/citas'
 const API_PACIENTES = '/api/pacientes'
@@ -102,14 +102,6 @@ export default function Dashboard() {
   const [pacientes, setPacientes] = useState([])
   const [cargando, setCargando]   = useState(true)
   const [voucherAbierto, setVoucherAbierto] = useState(false)
-
-  // Auto-apertura única por sesión cerca del día de pago
-  useEffect(() => {
-    if (debeAutoMostrar() && !sessionStorage.getItem('boucherMostrado')) {
-      setVoucherAbierto(true)
-      sessionStorage.setItem('boucherMostrado', '1')
-    }
-  }, [])
 
   useEffect(() => {
     const cargar = async () => {
