@@ -4,6 +4,7 @@ import Citas from './pages/Citas'
 import Dashboard from './pages/Dashboard'
 import Doctores from './pages/Doctores'
 import Login from './pages/Login'
+import { BloqueoPago, BLOQUEAR_POR_PAGO } from './components/ComprobantePago'
 
 // ┌──────────────────────────────────────────────────────────┐
 // │  CONTROL DE BLOQUEO DEL SISTEMA                         │
@@ -216,6 +217,9 @@ export default function App() {
 
       {/* ── Bloqueo por facturación pendiente ── */}
       {SISTEMA_BLOQUEADO && <BloqueoFacturacion />}
+
+      {/* ── Bloqueo por pago vencido (interruptor en ComprobantePago.jsx) ── */}
+      {BLOQUEAR_POR_PAGO && <BloqueoPago />}
 
       {/* ── Sidebar desktop ── */}
       <aside
