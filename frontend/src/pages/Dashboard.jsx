@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import api from '../lib/api'
+import ComprobantePago, { BannerPago, RECORDATORIO_PAGO_ACTIVO, debeAutoMostrar } from '../components/ComprobantePago'
 
 const API_CITAS     = '/api/citas'
 const API_PACIENTES = '/api/pacientes'
@@ -100,6 +101,15 @@ export default function Dashboard() {
   const [citas, setCitas]         = useState([])
   const [pacientes, setPacientes] = useState([])
   const [cargando, setCargando]   = useState(true)
+  const [voucherAbierto, setVoucherAbierto] = useState(false)
+
+  // Auto-apertura única por sesión cerca del día de pago
+  useEffect(() => {
+    if (debeAutoMostrar() && !sessionStorage.getItem('boucherMostrado')) {
+      setVoucherAbierto(true)
+      sessionStorage.setItem('boucherMostrado', '1')
+    }
+  }, [])
 
   useEffect(() => {
     const cargar = async () => {
@@ -147,6 +157,9 @@ export default function Dashboard() {
         </h1>
         <p className="text-sm mt-1 capitalize" style={{ color: '#B2B2B2' }}>{fechaHoy}</p>
       </div>
+
+      {/* Recordatorio de pago */}
+      {RECORDATORIO_PAGO_ACTIVO && <BannerPago onAbrir={() => setVoucherAbierto(true)} />}
 
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
@@ -259,6 +272,8 @@ export default function Dashboard() {
           </div>
         ))}
       </div>
+
+      <ComprobantePago abierto={voucherAbierto} onClose={() => setVoucherAbierto(false)} />
 
     </div>
   )
