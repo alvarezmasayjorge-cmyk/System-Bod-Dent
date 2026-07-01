@@ -7,7 +7,7 @@
 export const RECORDATORIO_PAGO_ACTIVO = true
 // Interruptor futuro: si lo pones en true, el comprobante se vuelve
 // un bloqueo total del sistema (no se puede cerrar).
-export const BLOQUEAR_POR_PAGO = false
+export const BLOQUEAR_POR_PAGO = true
 
 const DIA_PAGO   = 30          // día del mes en que vence el pago
 const DIAS_ANTES = 1           // a partir de cuántos días antes se auto-muestra (29-30)
