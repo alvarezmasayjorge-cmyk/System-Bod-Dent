@@ -1,0 +1,10 @@
+[build]
+  base = "frontend"
+  command = "npm ci && npm run build"
+  publish = "dist"
+
+# SPA: cualquier ruta sirve index.html para que React maneje la navegación
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
