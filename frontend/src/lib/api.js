@@ -1,8 +1,10 @@
 import axios from 'axios'
 
-const isProd = import.meta.env.PROD;
+// La URL configurada tiene prioridad también en producción (Netlify u otro servidor).
+const configuredUrl = import.meta.env.VITE_API_URL?.trim().replace(/\/+$/, '')
 const api = axios.create({
-  baseURL: isProd ? '/_/backend' : (import.meta.env.VITE_API_URL || 'http://localhost:3000'),
+  baseURL: import.meta.env.PROD ? (configuredUrl || '/') : (configuredUrl || 'http://localhost:3000'),
+  timeout: 15000,
 })
 
 // Agrega el token JWT a cada request automáticamente

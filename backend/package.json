@@ -5,20 +5,19 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "build": "prisma generate && prisma db push --accept-data-loss",
-    "start": "node src/seed.js && node src/index.js",
-    "seed": "node src/seed.js"
+    "build": "prisma generate",
+    "start": "node src/index.js",
+    "seed": "node src/seed.js",
+    "test": "node --test tests/*.test.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@prisma/adapter-better-sqlite3": "^7.8.0",
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "bcryptjs": "^3.0.3",
-    "better-sqlite3": "^12.10.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
@@ -26,7 +25,8 @@
     "node-cron": "^4.2.1",
     "nodemailer": "^8.0.7",
     "pg": "^8.20.0",
-    "prisma": "^7.8.0"
+    "prisma": "^7.8.0",
+    "serverless-http": "^4.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"

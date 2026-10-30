@@ -4,6 +4,8 @@ import Citas from './pages/Citas'
 import Dashboard from './pages/Dashboard'
 import Doctores from './pages/Doctores'
 import Login from './pages/Login'
+import Campanas from './pages/Campanas'
+import { emptyCampaign } from './lib/campaignMetrics'
 import { BloqueoPago, BLOQUEAR_POR_PAGO } from './components/ComprobantePago'
 
 // ┌──────────────────────────────────────────────────────────┐
@@ -185,6 +187,11 @@ const IconDoctor = () => (
     <circle cx="12" cy="7" r="4" />
   </svg>
 )
+const IconCampaign = () => (
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M3 3v18h18M7 16v-4M12 16V8M17 16V5" />
+  </svg>
+)
 const IconLogout = () => (
   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
@@ -193,6 +200,7 @@ const IconLogout = () => (
 )
 
 export default function App() {
+  const [campaign, setCampaign] = useState({ ...emptyCampaign })
   const [pagina, setPagina] = useState('dashboard')
   const [autenticado, setAutenticado] = useState(!!localStorage.getItem('token'))
 
@@ -204,11 +212,12 @@ export default function App() {
     { id: 'dashboard', label: 'Dashboard', Icon: IconGrid },
     { id: 'citas', label: 'Citas', Icon: IconCalendar },
     { id: 'pacientes', label: 'Pacientes', Icon: IconUsers },
+    { id: 'campanas', label: 'Campañas', Icon: IconCampaign },
     ...(esAdmin ? [{ id: 'doctores', label: 'Doctores', Icon: IconDoctor }] : []),
   ]
 
   const handleLogin = () => { setAutenticado(true) }
-  const handleLogout = () => { localStorage.removeItem('token'); localStorage.removeItem('usuario'); setAutenticado(false) }
+  const handleLogout = () => { setCampaign({ ...emptyCampaign }); setPagina('dashboard'); localStorage.removeItem('token'); localStorage.removeItem('usuario'); setAutenticado(false) }
 
   if (!autenticado) return <Login onLogin={handleLogin} />
 
@@ -327,6 +336,7 @@ export default function App() {
             {pagina === 'dashboard' && <Dashboard usuario={usuario} />}
             {pagina === 'citas' && <Citas />}
             {pagina === 'pacientes' && <Pacientes />}
+            {pagina === 'campanas' && <Campanas campaign={campaign} onChange={setCampaign} />}
             {pagina === 'doctores' && esAdmin && <Doctores />}
           </div>
         </div>

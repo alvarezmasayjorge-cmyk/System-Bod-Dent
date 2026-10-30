@@ -17,8 +17,19 @@ export default function Login({ onLogin }) {
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('usuario', JSON.stringify(res.data.usuario))
       onLogin()
-    } catch {
-      setError('Email o contraseña incorrectos')
+    } catch (err) {
+      const status = err.response?.status
+      if (status === 401) {
+        setError('Email o contraseña incorrectos')
+      } else if (status === 404) {
+        setError('No se encontró el servicio de inicio de sesión. Revisa la dirección del servidor configurada para este sitio.')
+      } else if (status === 429) {
+        setError('Demasiados intentos. Espera unos minutos e inténtalo de nuevo.')
+      } else if (!err.response) {
+        setError('No pudimos conectar con el servidor. Comprueba tu conexión e inténtalo de nuevo.')
+      } else {
+        setError('El servidor no pudo completar el inicio de sesión. Inténtalo de nuevo en unos minutos.')
+      }
     } finally {
       setCargando(false)
     }
