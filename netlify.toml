@@ -1,4 +1,6 @@
 [build]
+  # Publicar también los cambios de frontend, fuera del directorio base.
+  ignore = "exit 1"
   base = "backend"
   command = "npm ci && npm run build && npm --prefix ../frontend ci && npm --prefix ../frontend run build"
   publish = "../frontend/dist"
